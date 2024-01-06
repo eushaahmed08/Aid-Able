@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44688773069",
+    "project_id": "aidable",
+    "storage_bucket": "aidable.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44688773069:android:d63a757c6d68ad5d653e84",
+        "android_client_info": {
+          "package_name": "com.example.aid_able"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM9Lcx4SVCcfAY6mtfqP1gmM8gM_ODZ4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
