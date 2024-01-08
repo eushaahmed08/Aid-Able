@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.onTap});
+
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -165,17 +166,17 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
 
                 //not a memeber register now
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Not a member?',
                       style: TextStyle(color: Colors.grey),
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     GestureDetector(
-                      onTap: onTap,
-                      child: Text(
+                      onTap: widget.onTap,
+                      child: const Text(
                         'Register Now!',
                         style: TextStyle(
                           color: Colors.blue,

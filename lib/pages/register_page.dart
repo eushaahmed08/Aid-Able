@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const RegisterPage({super.key});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -184,18 +184,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
 
                 //not a memeber register now
-                const Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Already have an account?',
                       style: TextStyle(color: Colors.grey),
                     ),
-                    SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: onTap,
-                      child: Text(
-                        'Log in Now!',
+                    const SizedBox(width: 4),
+                      GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        'Register Now!',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
