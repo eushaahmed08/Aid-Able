@@ -16,17 +16,13 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  
-  
   //sign user up method
-  
+
   void signUserUp() async {
-    
-    
     // show loading screen
-    
-    
+
     showDialog(
         context: context,
         builder: (context) {
@@ -37,10 +33,17 @@ class _RegisterPageState extends State<RegisterPage> {
 
     //try creating the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      //check if pass is confirmed
+
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        //show error if pass wont match
+        showErrorMessage("Passwords dont match");
+      }
 
       //pop the loading circle
       // ignore: use_build_context_synchronously
@@ -91,8 +94,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 const SizedBox(height: 40),
 
+                //lets create an account
                 const Text(
-                  'Welcome Back',
+                  'Lets create an account!',
                   style: TextStyle(
                     color: Color.fromARGB(255, 9, 9, 9),
                     fontSize: 16,
@@ -104,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 //username
                 MyTextFeild(
                   controller: emailController,
-                  hintText: 'username',
+                  hintText: 'email',
                   obscureText: false,
                 ),
 
@@ -117,30 +121,24 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 5),
+                
 
                 const SizedBox(height: 10),
 
                 //confirm password
                 MyTextFeild(
-                  controller: passwordController,
+                  controller:confirmPasswordController,
                   hintText: 'confirm password',
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 5),
-
-                //forgot pass
-
-                const Text(
-                  'Forgot password?',
-                  style: TextStyle(color: Color(0xFF14213d)),
-                ),
-
                 const SizedBox(height: 10),
+
+              
 
                 //sign up button
                 MyButton(
+                  text: "Sign Up",
                   onTap: signUserUp,
                 ),
 
@@ -184,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
 
                 //not a memeber register now
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
@@ -192,10 +190,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(width: 4),
-                      GestureDetector(
+                    GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        'Register Now!',
+                        'Log in Now!',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
