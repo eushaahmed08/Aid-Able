@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                 //username
                 MyTextFeild(
                   controller: emailController,
-                  hintText: 'username',
+                  hintText: 'email',
                   obscureText: false,
                 ),
 
@@ -123,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 //sign in button
                 MyButton(
+                  text: "Sign In",
                   onTap: signUserIn,
                 ),
 
