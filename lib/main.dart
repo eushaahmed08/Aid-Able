@@ -10,9 +10,133 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  final navigatorKey = GlobalKey<NavigatorState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      home: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: AppBar(
+            toolbarHeight: 100,
+            title: Text("AidAble"),
+            backgroundColor: Colors.blue[300],
+            titleTextStyle: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2.0,
+              fontFamily: 'Kalnia',
+            ),
+            centerTitle: true,
+          ),
+        ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/reuse.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            navigatorKey.currentState!.push(
+              MaterialPageRoute(builder: (context) => FirstPage(navigatorKey: navigatorKey)),
+            );
+          },
+          label: Text('Continue'),
+          backgroundColor: Colors.blue[300],
+          icon: Icon(Icons.arrow_forward),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      ),
+    );
+  }
+}
+
+class FirstPage extends StatelessWidget {
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  FirstPage({required this.navigatorKey});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/reduce.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          navigatorKey.currentState!.push(
+            MaterialPageRoute(builder: (context) => SecondPage(navigatorKey: navigatorKey)),
+          );
+        },
+        label: Text('Continue'),
+        backgroundColor: Colors.blue[300],
+        icon: Icon(Icons.arrow_forward),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  SecondPage({required this.navigatorKey});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/recycle.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          navigatorKey.currentState!.push(
+            MaterialPageRoute(builder: (context) => AuthPage()),
+          );
+        },
+        label: Text('Continue'),
+        backgroundColor: Colors.blue[300],
+        icon: Icon(Icons.arrow_forward),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+}
+/*
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,3 +148,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+*/
