@@ -4,23 +4,25 @@ import 'package:aid_able/components/square_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
-
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  //sign user in method
-  void signUserIn() async {
+  //sign user up method
+
+  void signUserUp() async {
     // show loading screen
+
     showDialog(
         context: context,
         builder: (context) {
@@ -29,11 +31,19 @@ class _LoginPageState extends State<LoginPage> {
           );
         });
 
+    //try creating the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      //check if pass is confirmed
+
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        //show error if pass wont match
+        showErrorMessage("Passwords dont match");
+      }
 
       //pop the loading circle
       // ignore: use_build_context_synchronously
@@ -65,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFFfcbf49),
+      backgroundColor: const Color(0xFFfcbf49),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -84,8 +94,9 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 40),
 
+                //lets create an account
                 const Text(
-                  'Welcome Back',
+                  'Lets create an account!',
                   style: TextStyle(
                     color: Color.fromARGB(255, 9, 9, 9),
                     fontSize: 16,
@@ -110,21 +121,25 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 5),
+                
 
-                //forgot pass
+                const SizedBox(height: 10),
 
-                const Text(
-                  'Forgot password?',
-                  style: TextStyle(color: Color(0xFF14213d)),
+                //confirm password
+                MyTextFeild(
+                  controller:confirmPasswordController,
+                  hintText: 'confirm password',
+                  obscureText: true,
                 ),
 
                 const SizedBox(height: 10),
 
-                //sign in button
+              
+
+                //sign up button
                 MyButton(
-                  text: "Sign In",
-                  onTap: signUserIn,
+                  text: "Sign Up",
+                  onTap: signUserUp,
                 ),
 
                 const SizedBox(height: 10),
@@ -171,14 +186,14 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Not a member?',
+                      'Already have an account?',
                       style: TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        'Register Now!',
+                        'Log in Now!',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
