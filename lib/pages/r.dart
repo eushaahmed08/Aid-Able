@@ -20,19 +20,53 @@ class _MyAppState extends State<MyApp> {
           title: Text('AidAble'),
           leading: IconButton(
             icon: Icon(Icons.density_medium),
-            onPressed: () {
-              // Add functionality for the top app bar button here
-            },
+            onPressed: () {},
           ),
         ),
         body: _selectedIndex == 0
-            ? Center(
-          child: Text(
-            'Feed',
-            style: TextStyle(fontSize: 20.0),
-          ),
+            ? ListView.builder(
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            String itemName = '';
+            switch (index) {
+              case 0:
+                itemName = 'Food';
+                break;
+              case 1:
+                itemName = 'Clothes';
+                break;
+              case 2:
+                itemName = 'Books';
+                break;
+              case 3:
+                itemName = 'Blankets';
+                break;
+              case 4:
+                itemName = 'Toys';
+                break;
+              default:
+                itemName = 'Unknown';
+            }
+
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 56.6929,
+                decoration: BoxDecoration(
+                  color: Colors.purple,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Center(
+                  child: Text(
+                    itemName,
+                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  ),
+                ),
+              ),
+            );
+          },
         )
-            : Container(), // Empty container when other icons are selected
+            : Container(),
         bottomNavigationBar: BottomAppBar(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,7 +74,7 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>((Set<MaterialState> states) {
-                    return _selectedIndex == 0 ? 8.0 : 0.0; // Set elevation for the selected button
+                    return _selectedIndex == 0 ? 8.0 : 0.0;
                   }),
                 ),
                 onPressed: () {
@@ -86,7 +120,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    // Set the first button as selected by default
     _selectedIndex = 0;
   }
 }
