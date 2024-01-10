@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class  MyListTile extends StatelessWidget {
   final IconData icon;
   final String text;
-  void Function()? onTap;
+ final void Function()? onTap;
 
   const MyListTile({
 
     super.key,
     required this.icon,
     required this.text,
-
+    required this.onTap,
   });
 
   @override
@@ -31,6 +31,7 @@ class  MyListTile extends StatelessWidget {
 
       ),
 
+      onTap: onTap,
       title: Text(
 
           text,
