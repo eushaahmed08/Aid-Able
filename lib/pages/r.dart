@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'addpost.dart';
 
 void main() {
   runApp(MyApp());
@@ -90,6 +91,10 @@ class _MyAppState extends State<MyApp> {
                 ),
                 onPressed: () {
                   _onItemTapped(1);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddPostPage()),
+                  );
                 },
                 child: Icon(Icons.post_add),
               ),
