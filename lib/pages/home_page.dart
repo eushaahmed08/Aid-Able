@@ -1,12 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'r.dart'; // Import the file containing the second code
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  HomePage({Key? key});
 
   final user = FirebaseAuth.instance.currentUser!;
 
-  //sign user out method
+  // Method to navigate to the second page
+  void navigateToSecondPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MyApp()), // Using the second code's page
+    );
+  }
+
+  // Sign user out method
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
@@ -17,16 +26,17 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: signUserOut,
+            onPressed: () => navigateToSecondPage(context), // Navigate when icon is pressed
             icon: const Icon(Icons.logout),
           )
         ],
       ),
       body: Center(
-          child: Text(
-        "Logged In As ${user.email!}",
-        style: const TextStyle(fontSize: 20),
-      )),
+        child: Text(
+          "Logged In As ${user.email!}",
+          style: const TextStyle(fontSize: 20),
+        ),
+      ),
     );
   }
 }
