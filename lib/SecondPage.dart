@@ -1,13 +1,11 @@
+
 import 'package:aid_able/pages/auth_page.dart';
-//import 'package:aid_able/second_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import 'SecondPage.dart';
 
 
-
-class first_page extends StatelessWidget {
+class second_page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class first_page extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/reuse.png'),
+                  image: AssetImage('assets/reduce.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -30,7 +28,7 @@ class first_page extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen:  second_page(),
+      nextScreen:  AuthPage(),
       splashIconSize: double.infinity,
       duration: 1000,
       splashTransition: SplashTransition.fadeTransition,
