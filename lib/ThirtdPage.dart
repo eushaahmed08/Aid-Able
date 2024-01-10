@@ -3,11 +3,9 @@ import 'package:aid_able/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import 'ThirtdPage.dart';
 
 
-
-class second_page extends StatelessWidget {
+class third_page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class second_page extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/reduce.png'),
+                  image: AssetImage('assets/recycle.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -30,7 +28,7 @@ class second_page extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen:  third_page(),
+      nextScreen:  AuthPage(),
       splashIconSize: double.infinity,
       duration: 1000,
       splashTransition: SplashTransition.fadeTransition,
