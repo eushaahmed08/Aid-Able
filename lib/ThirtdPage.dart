@@ -1,11 +1,16 @@
 
+// ignore_for_file: file_names
+
 import 'package:aid_able/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 
 
+// ignore: camel_case_types
 class third_page extends StatelessWidget {
+  const third_page({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class third_page extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/recycle.png'),
                   fit: BoxFit.cover,
@@ -28,7 +33,7 @@ class third_page extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen:  AuthPage(),
+      nextScreen:  const AuthPage(),
       splashIconSize: double.infinity,
       duration: 1000,
       splashTransition: SplashTransition.fadeTransition,

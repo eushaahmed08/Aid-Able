@@ -7,7 +7,10 @@ import 'ThirtdPage.dart';
 
 
 
+// ignore: camel_case_types
 class second_page extends StatelessWidget {
+  const second_page({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class second_page extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/reduce.png'),
                   fit: BoxFit.cover,
@@ -30,7 +33,7 @@ class second_page extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen:  third_page(),
+      nextScreen:  const third_page(),
       splashIconSize: double.infinity,
       duration: 1000,
       splashTransition: SplashTransition.fadeTransition,

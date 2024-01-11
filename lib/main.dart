@@ -16,11 +16,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   final navigatorKey = GlobalKey<NavigatorState>();
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         navigatorKey: navigatorKey,
-        home: first_page()
+        home: const first_page()
 
 
     );
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
 class FirstPage extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  FirstPage({required this.navigatorKey});
+  const FirstPage({super.key, required this.navigatorKey});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class FirstPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/reduce.png'),
                 fit: BoxFit.cover,
@@ -54,9 +56,9 @@ class FirstPage extends StatelessWidget {
             MaterialPageRoute(builder: (context) => SecondPage(navigatorKey: navigatorKey)),
           );
         },
-        label: Text('Continue'),
+        label: const Text('Continue'),
         backgroundColor: Colors.blue[300],
-        icon: Icon(Icons.arrow_forward),
+        icon: const Icon(Icons.arrow_forward),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
@@ -66,7 +68,7 @@ class FirstPage extends StatelessWidget {
 class SecondPage extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  SecondPage({required this.navigatorKey});
+  const SecondPage({super.key, required this.navigatorKey});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class SecondPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/recycle.png'),
                 fit: BoxFit.cover,
@@ -87,12 +89,12 @@ class SecondPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           navigatorKey.currentState!.push(
-            MaterialPageRoute(builder: (context) => AuthPage()),
+            MaterialPageRoute(builder: (context) => const AuthPage()),
           );
         },
-        label: Text('Continue'),
+        label: const Text('Continue'),
         backgroundColor: Colors.blue[300],
-        icon: Icon(Icons.arrow_forward),
+        icon: const Icon(Icons.arrow_forward),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
