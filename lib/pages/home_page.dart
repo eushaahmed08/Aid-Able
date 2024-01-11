@@ -143,7 +143,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   // Sign user out method
   void signUserOut() {
     FirebaseAuth.instance.signOut();
@@ -170,4 +169,3 @@ class _HomePageState extends State<HomePage> {
   //   );
   // }
 }
-
