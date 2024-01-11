@@ -18,9 +18,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('AidAble'),
+
+          title: const Text('AidAble'),
           leading: IconButton(
-            icon: Icon(Icons.density_medium),
+            icon: const Icon(Icons.density_medium),
+
             onPressed: () {},
           ),
         ),
@@ -60,7 +62,9 @@ class _MyAppState extends State<MyApp> {
                 child: Center(
                   child: Text(
                     itemName,
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+
+                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
+
                   ),
                 ),
               ),
@@ -81,7 +85,9 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   _onItemTapped(0);
                 },
-                child: Icon(Icons.feed),
+
+                child: const Icon(Icons.feed),
+
               ),
               ElevatedButton(
                 style: ButtonStyle(
@@ -96,7 +102,8 @@ class _MyAppState extends State<MyApp> {
                     MaterialPageRoute(builder: (context) => AddPostPage()),
                   );
                 },
-                child: Icon(Icons.post_add),
+                child: const Icon(Icons.post_add),
+
               ),
               ElevatedButton(
                 style: ButtonStyle(
@@ -107,7 +114,8 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   _onItemTapped(2);
                 },
-                child: Icon(Icons.question_answer),
+                child: const Icon(Icons.question_answer),
+
               ),
             ],
           ),
