@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     itemName,
                     style: const TextStyle(
-                        fontSize: 20.0, color: Colors.white),
+                        fontSize: 20.0, color: Colors.black),
                   ),
                 ),
               ),
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 UserAccountsDrawerHeader(
-                  accountName: Text("Your App Name"),
+                  accountName: Text("AID - ABLE"),
                   accountEmail: Text(user.email ?? ""),
                   currentAccountPicture: CircleAvatar(
                     backgroundColor: Colors.white,
@@ -142,14 +142,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 ListTile(
-                  title: Text("Drawer Item 1"),
+                  title: Text("U S E R  N A M E "),
                   onTap: () {
                     Navigator.pop(context);
                     // Handle drawer item tap
                   },
                 ),
                 ListTile(
-                  title: Text("Drawer Item 2"),
+                  title: Text("U S E R  I N F O "),
                   onTap: () {
                     Navigator.pop(context);
                     // Handle drawer item tap
