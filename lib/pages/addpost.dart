@@ -6,7 +6,9 @@ class AddPostPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add your Post'),
+       // backgroundColor: Colors.lavender, // Set the lavender color for the app bar
       ),
+      backgroundColor: Color(0xFFE6E6FA), // Set the lavender color for the entire page
       body: Center(
         child: Text(
           'Options and Features for Adding Post',

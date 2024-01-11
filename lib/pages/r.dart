@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'addpost.dart';
+import 'chat.dart';
 
 void main() {
   runApp(MyApp());
@@ -106,6 +107,10 @@ class _MyAppState extends State<MyApp> {
                 ),
                 onPressed: () {
                   _onItemTapped(2);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChatPage()),
+                  );
                 },
                 child: Icon(Icons.question_answer),
               ),
