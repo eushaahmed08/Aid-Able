@@ -15,9 +15,9 @@ class MyDrawer extends StatelessWidget {
 
 
 
-        backgroundColor: Color.grey[900],
+      backgroundColor: const Color(0xFFBCD7AE),
 
-        child: Column(
+      child: Column(
 
         children: [
 
@@ -39,19 +39,19 @@ class MyDrawer extends StatelessWidget {
 
 
 
-        //home list title
+          //home list title
 
-        MyListTile(
+          MyListTile(
 
-        icon: Icons.home, text: 'H O M E',
+            icon: Icons.home, text: 'H O M E',
 
-        onTap:() => Navigator.Pop(context),
+            onTap:() => Navigator.pop(context),
 
-        ),
+          ),
 
 
 
-        //profile list title
+          //profile list title
 
 
 
@@ -71,7 +71,7 @@ class MyDrawer extends StatelessWidget {
         ],
 
 
-    ),
+      ),
     );
   }
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class  MyListTile extends StatelessWidget {
   final IconData icon;
   final String text;
- final void Function()? onTap;
+  final void Function()? onTap;
 
   const MyListTile({
 
@@ -24,21 +24,21 @@ class  MyListTile extends StatelessWidget {
 
       child: ListTile(
 
-      leading: Icon(
+        leading: Icon(
 
-        icon,
-        color: Colors.white,
+          icon,
+          color: Colors.white,
 
-      ),
+        ),
 
-      onTap: onTap,
-      title: Text(
+        onTap: onTap,
+        title: Text(
 
           text,
-    style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
 
+        ),
       ),
-    ),
     ); //padding
 
   }
