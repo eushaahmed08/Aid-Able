@@ -1,9 +1,9 @@
-import 'package:aid_able/pages/auth_page.dart';
+//import 'package:aid_able/pages/auth_page.dart';
 //import 'package:aid_able/second_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import 'SecondPage.dart';
+import 'second_page.dart';
 
 
 
@@ -20,7 +20,7 @@ class first_page extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/reuse.png'),
                   fit: BoxFit.cover,
