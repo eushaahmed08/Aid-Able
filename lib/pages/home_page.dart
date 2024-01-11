@@ -32,48 +32,48 @@ class _HomePageState extends State<HomePage> {
         ),
         body: _selectedIndex == 0
             ? ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            String itemName = '';
-            switch (index) {
-              case 0:
-                itemName = 'Food';
-                break;
-              case 1:
-                itemName = 'Clothes';
-                break;
-              case 2:
-                itemName = 'Books';
-                break;
-              case 3:
-                itemName = 'Blankets';
-                break;
-              case 4:
-                itemName = 'Toys';
-                break;
-              default:
-                itemName = 'Unknown';
-            }
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  String itemName = '';
+                  switch (index) {
+                    case 0:
+                      itemName = 'Food';
+                      break;
+                    case 1:
+                      itemName = 'Clothes';
+                      break;
+                    case 2:
+                      itemName = 'Books';
+                      break;
+                    case 3:
+                      itemName = 'Blankets';
+                      break;
+                    case 4:
+                      itemName = 'Toys';
+                      break;
+                    default:
+                      itemName = 'Unknown';
+                  }
 
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 56.6929,
-                decoration: BoxDecoration(
-                  color: Colors.purple,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Center(
-                  child: Text(
-                    itemName,
-                    style: const TextStyle(
-                        fontSize: 20.0, color: Colors.black),
-                  ),
-                ),
-              ),
-            );
-          },
-        )
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 56.6929,
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          itemName,
+                          style: const TextStyle(
+                              fontSize: 20.0, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              )
             : Container(),
         bottomNavigationBar: BottomAppBar(
           child: Row(
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
+                    (Set<MaterialState> states) {
                       return _selectedIndex == 0 ? 8.0 : 0.0;
                     },
                   ),
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
+                    (Set<MaterialState> states) {
                       return _selectedIndex == 1 ? 8.0 : 0.0;
                     },
                   ),
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
+                    (Set<MaterialState> states) {
                       return _selectedIndex == 2 ? 8.0 : 0.0;
                     },
                   ),
@@ -128,28 +128,28 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         drawer: Drawer(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
                 UserAccountsDrawerHeader(
-                  accountName: Text("AID - ABLE"),
+                  accountName: const Text("AID - ABLE"),
                   accountEmail: Text(user.email ?? ""),
-                  currentAccountPicture: CircleAvatar(
+                  currentAccountPicture: const CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Icon(Icons.person),
                   ),
                 ),
                 ListTile(
-                  title: Text("U S E R  N A M E "),
+                  title: const Text("U S E R  N A M E "),
                   onTap: () {
                     Navigator.pop(context);
                     // Handle drawer item tap
                   },
                 ),
                 ListTile(
-                  title: Text("U S E R  I N F O "),
+                  title: const Text("U S E R  I N F O "),
                   onTap: () {
                     Navigator.pop(context);
                     // Handle drawer item tap
@@ -186,7 +186,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   // Sign user out method
   void signUserOut() {
     FirebaseAuth.instance.signOut();
@@ -213,4 +212,3 @@ class _HomePageState extends State<HomePage> {
   //   )
   // }
 }
-
