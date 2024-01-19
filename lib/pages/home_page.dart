@@ -1,4 +1,5 @@
 import 'package:aid_able/pages/addpost.dart';
+import 'package:aid_able/pages/news_feed_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -165,8 +166,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onItemTapped(int index) {
+  if (index == 0) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NewsFeedPage(), // Create NewsFeedPage class
+      ),
+    );
+  } else {
     setState(() {
       _selectedIndex = index;
     });
   }
+}
 }

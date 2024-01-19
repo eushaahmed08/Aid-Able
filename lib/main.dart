@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //import 'pages/login_page.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'first_page.dart';
+import 'pages/first_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -13,6 +13,7 @@ void main() async {
   );
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -23,10 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        home: const first_page()
-
-
-    );
+        home: const first_page());
   }
 }
 
@@ -54,7 +52,8 @@ class FirstPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           navigatorKey.currentState!.push(
-            MaterialPageRoute(builder: (context) => SecondPage(navigatorKey: navigatorKey)),
+            MaterialPageRoute(
+                builder: (context) => SecondPage(navigatorKey: navigatorKey)),
           );
         },
         label: const Text('Continue'),
