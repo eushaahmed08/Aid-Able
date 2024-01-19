@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
         home: const first_page()
 
 
