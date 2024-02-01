@@ -41,4 +41,28 @@ class PushNotifications {
         onDidReceiveNotificationResponse: onNotificationTap,
         onDidReceiveBackgroundNotificationResponse: onNotificationTap);
   }
+  // on tap local notification in foreground
+  static void onNotificationTap(NotificationResponse notificationResponse) {
+    navigatorKey.currentState!
+        .pushNamed("/message", arguments: notificationResponse);
+  }
+
+  // show a simple notification
+  static Future showSimpleNotification({
+    required String title,
+    required String body,
+    required String payload,
+  }) async {
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails('your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'ticker');
+    const NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails);
+    await _flutterLocalNotificationsPlugin
+        .show(0, title, body, notificationDetails, payload: payload);
+  }
+}
 
