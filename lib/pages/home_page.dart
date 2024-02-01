@@ -1,7 +1,102 @@
+import 'package:aid_able/chat/chat_service.dart';
 import 'package:aid_able/pages/addpost.dart';
 import 'package:aid_able/pages/news_feed_page.dart';
+import 'package:aid_able/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'ChatPage.dart';
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+//chat & auth service
+ final ChatService _chatService= ChatService();
+ final AuthService _authService= AuthService();
+
+ @override
+
+
+  Widget build (BuildContext context){
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text("Home"),
+      backgroundColor: Colors.transparent,
+      foregroundColor: Colors.grey,
+      elevation: 0,
+
+    ),
+    drawer: const MyDrawer(),
+    body: _buildUserList(),
+
+
+
+  );
+
+
+
+
+
+ }
+
+Widget _buildUserList() {
+  return StreamBuilder(
+      stream: _chatService.getUserStream(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Text ("Error");
+        }
+
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Text("Loading..");
+        }
+
+        return ListView(
+
+          children: snapshot.data!
+              .map<Widget>((userData) => _buildUserListItem(userData,context))
+              .toList(),
+        );
+      }
+
+
+      Widget _buildUserListItem(
+      Map<String, dynamic> userData, BuildContext context){
+
+      return UserTile(
+        text:userData("email"),
+        onTap:(){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:(context)=>ChatPage(
+                receiverEmail: userData("email"),
+                receiverID: userData("uid"),
+              ),
+            ),
+          );
+
+        },
+   );
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -173,10 +268,18 @@ class _HomePageState extends State<HomePage> {
         builder: (context) => const NewsFeedPage(), // Create NewsFeedPage class
       ),
     );
-  } else {
+  } else if (index==2) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ChatPage(receiverEmail: '',), // Create NewsFeedPage class
+      ),
+    );
+   } else {
     setState(() {
       _selectedIndex = index;
     });
   }
+
 }
 }
