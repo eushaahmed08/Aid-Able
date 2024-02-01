@@ -166,17 +166,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onItemTapped(int index) {
-  if (index == 0) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const NewsFeedPage(), // Create NewsFeedPage class
-      ),
-    );
-  } else {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              const NewsFeedPage(), // Create NewsFeedPage class
+        ),
+      );
+    } else {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
-}
 }
