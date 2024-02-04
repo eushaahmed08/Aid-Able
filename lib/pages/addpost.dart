@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AddPostPage extends StatelessWidget {
+  const AddPostPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add your Post'),
-       // backgroundColor: Colors.lavender, // Set the lavender color for the app bar
+        title: const Text('Add your Post'),
       ),
-      backgroundColor: Color(0xFFE6E6FA), // Set the lavender color for the entire page
-      body: Center(
+      body: const Center(
         child: Text(
           'Options and Features for Adding Post',
           style: TextStyle(fontSize: 20.0),
@@ -18,3 +18,4 @@ class AddPostPage extends StatelessWidget {
     );
   }
 }
+
