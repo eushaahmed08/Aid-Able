@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget{
-  final String meesage ;
+  final String message ;
   final bool isCurrentUser;
 
-
+@override
   const ChatBubble({
 
     super.key,

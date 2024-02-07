@@ -171,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //google
-                    SquareTile(
+                   /* SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
                       imagePath: 'lib/images/google.png',
                     ),
@@ -188,7 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-
+*/
                 const SizedBox(height: 10),
 
                 //not a memeber register now
@@ -214,9 +214,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 )
               ],
             ),
-          ),
-        ),
+
+  ],
       ),
+    ),
+    ),
+    ),
     );
   }
 }

@@ -9,7 +9,7 @@ class UserTile extends StatelessWidget{
   const UserTile({
     super.key,
     required this.text,
-    required thid.onTap,
+    required this.onTap,
 
 });
 
@@ -19,7 +19,7 @@ class UserTile extends StatelessWidget{
       child:Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
-          border: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12),
 
         ),
         margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 25),
@@ -32,7 +32,7 @@ class UserTile extends StatelessWidget{
         ),
       )
 
-    )
+    );
   }
 
 

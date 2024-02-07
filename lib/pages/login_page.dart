@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  const Color(0xFFfcbf49),
+      backgroundColor: const Color(0xFFfcbf49),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -134,15 +134,15 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Expanded(
                         child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey,
-                    )),
+                          thickness: 0.5,
+                          color: Colors.grey,
+                        )),
                     Text('Or continue with'),
                     Expanded(
                         child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey,
-                    ))
+                          thickness: 0.5,
+                          color: Colors.grey,
+                        ))
                   ],
                 ),
                 //google+apple sign in button
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     //google
 
-                    SquareTile(
+                    /* SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
                       imagePath: 'lib/images/google.png',
                     ),
@@ -170,30 +170,32 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
+*/
+                    const SizedBox(height: 10),
 
-                const SizedBox(height: 10),
-
-                //not a memeber register now
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Not a member?',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                        'Register Now!',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
+                    //not a memeber register now
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Not a member?',
+                          style: TextStyle(color: Colors.grey),
                         ),
-                      ),
+                        const SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: widget.onTap,
+                          child: const Text(
+                            'Register Now!',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
                     )
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -201,4 +203,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
 }
