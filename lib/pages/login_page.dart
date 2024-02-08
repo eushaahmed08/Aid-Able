@@ -15,19 +15,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
 
   //sign user in method
   void signUserIn() async {
     // show loading screen
     showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -36,11 +36,12 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       //pop the loading circle
-      // ignore: use_build_context_synchronously
       Navigator.pop(context);
+
+      // Show notification
+      showNotification('You have signed in!');
     } on FirebaseAuthException catch (e) {
       //pop the loading circle
-      // ignore: use_build_context_synchronously
       Navigator.pop(context);
 
       //show error message
@@ -54,9 +55,27 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(
-            message,
-          ),
+          title: Text(message),
+        );
+      },
+    );
+  }
+
+  // Notification pop up
+  void showNotification(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK'),
+            ),
+          ],
         );
       },
     );
@@ -65,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  const Color(0xFFfcbf49),
+      backgroundColor: const Color(0xFFfcbf49),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -73,12 +92,6 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
-
-                // //logo
-                // const Icon(
-                //   Icons.lock,
-                //   size: 100,
-                // ),
 
                 SquareTile(onTap: () {}, imagePath: 'lib/images/logo.png'),
 
@@ -94,7 +107,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 20),
 
-                //username
                 MyTextFeild(
                   controller: emailController,
                   hintText: 'email',
@@ -103,7 +115,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 10),
 
-                //password
                 MyTextFeild(
                   controller: passwordController,
                   hintText: 'password',
@@ -112,8 +123,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 5),
 
-                //forgot pass
-
                 const Text(
                   'Forgot password?',
                   style: TextStyle(color: Color(0xFF14213d)),
@@ -121,7 +130,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 10),
 
-                //sign in button
                 MyButton(
                   text: "Sign In",
                   onTap: signUserIn,
@@ -129,30 +137,29 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 10),
 
-                //or continue with
                 const Row(
                   children: [
                     Expanded(
-                        child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey,
-                    )),
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey,
+                      ),
+                    ),
                     Text('Or continue with'),
                     Expanded(
-                        child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey,
-                    ))
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
                 ),
-                //google+apple sign in button
+
                 const SizedBox(height: 20),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    //google
-
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
                       imagePath: 'lib/images/google.png',
@@ -161,8 +168,6 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 20),
 
                     const SizedBox(width: 10),
-
-                    //apple
 
                     SquareTile(
                       onTap: () {},
@@ -173,7 +178,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 10),
 
-                //not a memeber register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -191,9 +195,9 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),

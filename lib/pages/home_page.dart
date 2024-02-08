@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -33,48 +33,71 @@ class _HomePageState extends State<HomePage> {
         ),
         body: _selectedIndex == 0
             ? ListView.builder(
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  String itemName = '';
-                  switch (index) {
-                    case 0:
-                      itemName = 'Food';
-                      break;
-                    case 1:
-                      itemName = 'Clothes';
-                      break;
-                    case 2:
-                      itemName = 'Books';
-                      break;
-                    case 3:
-                      itemName = 'Blankets';
-                      break;
-                    case 4:
-                      itemName = 'Toys';
-                      break;
-                    default:
-                      itemName = 'Unknown';
-                  }
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            String itemName = '';
+            String imagePath = '';
+            switch (index) {
+              case 0:
+                itemName = 'Food';
+                imagePath = 'assets/food.jpg'; // Replace with your food image path
+                break;
+              case 1:
+                itemName = 'Clothes';
+                imagePath = 'assets/clothes.jpeg'; // Replace with your clothes image path
+                break;
+              case 2:
+                itemName = 'Books';
+                imagePath = 'assets/books.jpg'; // Replace with your books image path
+                break;
+              case 3:
+                itemName = 'Blankets';
+                imagePath = 'assets/Blanket.png'; // Replace with your blankets image path
+                break;
+              case 4:
+                itemName = 'Toys';
+                imagePath = 'assets/stationary.jpg'; // Replace with your toys image path
+                break;
+              default:
+                itemName = 'Unknown';
+            }
 
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 56.6929,
-                      decoration: BoxDecoration(
-                        color: Colors.purple,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  // Handle item click
+                },
+                child: Container(
+                  height: 300, // Adjust the height as needed
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: AssetImage(imagePath),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           itemName,
                           style: const TextStyle(
-                              fontSize: 20.0, color: Colors.black),
+                            fontSize: 20.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        )
             : Container(),
         bottomNavigationBar: BottomAppBar(
           child: Row(
@@ -83,7 +106,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>(
-                    (Set<MaterialState> states) {
+                        (Set<MaterialState> states) {
                       return _selectedIndex == 0 ? 8.0 : 0.0;
                     },
                   ),
@@ -96,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>(
-                    (Set<MaterialState> states) {
+                        (Set<MaterialState> states) {
                       return _selectedIndex == 1 ? 8.0 : 0.0;
                     },
                   ),
@@ -115,7 +138,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.resolveWith<double>(
-                    (Set<MaterialState> states) {
+                        (Set<MaterialState> states) {
                       return _selectedIndex == 2 ? 8.0 : 0.0;
                     },
                   ),
@@ -170,8 +193,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              const NewsFeedPage(), // Create NewsFeedPage class
+          builder: (context) => const NewsFeedPage(),
         ),
       );
     } else {
