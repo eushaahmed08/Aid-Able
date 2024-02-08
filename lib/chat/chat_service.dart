@@ -32,6 +32,10 @@ class ChatService {
     );
     List<String> ids=[currentUserID,receiverID];
     ids.sort();
+
+
+
+
     String chatRoomID=ids.join('_');
     await firestore.collection("chat_rooms").doc(chatRoomID).collection("messages").add(newMessage.toMap());
   }

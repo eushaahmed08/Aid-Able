@@ -77,13 +77,13 @@ class Home extends StatelessWidget {
   Widget buildUserListItem(Map<String, dynamic>userData, BuildContext context) {
     if (userData["email"] != authService.getCurrentUser()!.email) {
       return UserTile(
-        text: userData["username"]==null?'set your name':userData["username"],
+        text: userData["email"]==null?'set your email':userData["email"],
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>
                 ChatPage(
-                  username: userData["username"]==null?'set your name':userData["username"],
+                  username: userData["email"]==null?'set your email':userData["email"],
                   receiverID: userData["uid"],)
             ),
           );
