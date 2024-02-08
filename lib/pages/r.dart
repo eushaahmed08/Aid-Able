@@ -1,130 +1,101 @@
 import 'package:flutter/material.dart';
-import 'addpost.dart';
-import 'chat.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-
-          title: const Text('AidAble'),
-          leading: IconButton(
-            icon: const Icon(Icons.density_medium),
-
-            onPressed: () {},
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AidAble'),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {},
         ),
-        body: _selectedIndex == 0
-            ? ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            String itemName = '';
-            switch (index) {
-              case 0:
-                itemName = 'Food';
-                break;
-              case 1:
-                itemName = 'Clothes';
-                break;
-              case 2:
-                itemName = 'Books';
-                break;
-              case 3:
-                itemName = 'Blankets';
-                break;
-              case 4:
-                itemName = 'Toys';
-                break;
-              default:
-                itemName = 'Unknown';
-            }
-
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 56.6929,
-                decoration: BoxDecoration(
-                  color: Colors.purple,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Center(
-                  child: Text(
-                    itemName,
-
-                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
-
-                  ),
-                ),
-              ),
-            );
-          },
-        )
-            : Container(),
-        bottomNavigationBar: BottomAppBar(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ElevatedButton(
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.resolveWith<double>((Set<MaterialState> states) {
-                    return _selectedIndex == 0 ? 8.0 : 0.0;
-                  }),
-                ),
-                onPressed: () {
-                  _onItemTapped(0);
-                },
-
-                child: const Icon(Icons.feed),
-
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.resolveWith<double>((Set<MaterialState> states) {
-                    return _selectedIndex == 1 ? 8.0 : 0.0;
-                  }),
-                ),
-                onPressed: () {
-                  _onItemTapped(1);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddPostPage()),
-                  );
-                },
-                child: const Icon(Icons.post_add),
-
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.resolveWith<double>((Set<MaterialState> states) {
-                    return _selectedIndex == 2 ? 8.0 : 0.0;
-                  }),
-                ),
-                onPressed: () {
-                  _onItemTapped(2);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ChatPage()),
-                  );
-                },
-                child: const Icon(Icons.question_answer),
-
-              ),
-            ],
+      ),
+      body: _selectedIndex == 0
+          ? ListView(
+        children: [
+          _buildCategoryItem(
+            title: 'Food',
+            imagePath: 'assets/food.jpg', // Provide correct image path
           ),
-        ),
+          _buildCategoryItem(
+            title: 'Clothes',
+            imagePath: 'assets/clothes.jpg', // Provide correct image path
+          ),
+          _buildCategoryItem(
+            title: 'Books',
+            imagePath: 'assets/books.jpg', // Provide correct image path
+          ),
+          _buildCategoryItem(
+            title: 'Blankets',
+            imagePath: 'assets/Blanket.jpg', // Provide correct image path
+          ),
+          _buildCategoryItem(
+            title: 'Toys',
+            imagePath: 'assets/stationary.jpg', // Provide correct image path
+          ),
+        ],
+      )
+          : Container(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle),
+            label: 'Add Post',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+
+  Widget _buildCategoryItem({String title, String imagePath}) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            imagePath,
+            width: 120, // Adjust image width as needed
+            height: 120, // Adjust image height as needed
+            fit: BoxFit.cover,
+          ),
+          SizedBox(height: 8),
+          Text(
+            title,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
@@ -133,11 +104,5 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedIndex = 0;
   }
 }
