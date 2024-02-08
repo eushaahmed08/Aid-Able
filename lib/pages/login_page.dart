@@ -17,30 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // Function to display a notification
-  void showLoginNotification() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Notification'),
-          content: Text('You have signed in!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  // Sign user in method
+  //sign user in method
   void signUserIn() async {
-    // Show loading screen
+    // show loading screen
     showDialog(
       context: context,
       builder: (context) {
@@ -56,27 +35,47 @@ class _LoginPageState extends State<LoginPage> {
         password: passwordController.text,
       );
 
-      // Pop the loading circle
+      //pop the loading circle
       Navigator.pop(context);
 
-      // Show login notification
-      showLoginNotification();
+      // Show notification
+      showNotification('You have signed in!');
     } on FirebaseAuthException catch (e) {
-      // Pop the loading circle
+      //pop the loading circle
       Navigator.pop(context);
 
-      // Show error message
+      //show error message
       showErrorMessage(e.code);
     }
   }
 
-  // Error message pop up
+  //error message pop up
   void showErrorMessage(String message) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text(message),
+        );
+      },
+    );
+  }
+
+  // Notification pop up
+  void showNotification(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK'),
+            ),
+          ],
         );
       },
     );
@@ -196,9 +195,9 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
