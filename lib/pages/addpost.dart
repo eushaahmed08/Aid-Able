@@ -18,3 +18,4 @@ class AddPostPage extends StatelessWidget {
     );
   }
 }
+
