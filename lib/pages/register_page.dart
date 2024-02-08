@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       } else {
         //show error if pass wont match
-        showErrorMessage("Passwords dont match");
+        showErrorMessage("Password doesn't match");
       }
 
       //pop the loading circle
