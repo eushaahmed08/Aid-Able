@@ -32,18 +32,18 @@ class ChatService {
     );
     List<String> ids=[currentUserID,receiverID];
     ids.sort();
-    String chatRoomID=ids.join('');
-    await firestore.collection("chatrooms").doc(chatRoomID).collection("messages").add(newMessage.toMap());
+    String chatRoomID=ids.join('_');
+    await firestore.collection("chat_rooms").doc(chatRoomID).collection("messages").add(newMessage.toMap());
   }
   Stream<QuerySnapshot> getMessages(String userID,otherUserID){
     List<String> ids=[userID,otherUserID];
     ids.sort();
-    String chatRoomID=ids.join('');
+    String chatRoomID=ids.join('_');
     return firestore.collection("chat_rooms").doc(chatRoomID).collection("messages").orderBy("timestamp",descending: false).snapshots();
 
-  }
 
 
 
 
-}
+
+}}

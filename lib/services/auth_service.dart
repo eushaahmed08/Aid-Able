@@ -18,20 +18,20 @@ class AuthService{
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email,
           password: password);
-      firestore.collection("Users").doc(userCredential.user!.uid).set(
+     /* firestore.collection("Users").doc(userCredential.user!.uid).set(
           {
             'uid':userCredential.user!.uid,
             'email':email,
 
 
           }
-      );
+      );*/
       return userCredential;
     }on FirebaseAuthException catch(e){
       throw Exception(e.code);
     }
   }
-  Future<UserCredential> signUpWithEmailPassword(String email, password,username)async {
+  Future<UserCredential> signUpWithEmailPassword(String email, password)async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email,
@@ -41,7 +41,7 @@ class AuthService{
           {
             'uid':userCredential.user!.uid,
             'email':email,
-            'username':username,
+            //'username':username,
           }
       );
 

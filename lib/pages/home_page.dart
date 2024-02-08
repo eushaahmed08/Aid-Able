@@ -3,6 +3,8 @@ import 'package:aid_able/pages/news_feed_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../chat/users page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -174,10 +176,14 @@ class _HomePageState extends State<HomePage> {
               const NewsFeedPage(), // Create NewsFeedPage class
         ),
       );
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
+    } else if(index==2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+           Home(), // Create NewsFeedPage class
+        ),
+      );
     }
   }
 }
