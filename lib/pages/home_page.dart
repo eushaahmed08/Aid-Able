@@ -1,7 +1,7 @@
 import 'package:aid_able/pages/addpost.dart';
 import 'package:aid_able/pages/news_feed_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,10 +13,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final user = FirebaseAuth.instance.currentUser!;
+  ThemeMode _currentThemeMode = ThemeMode.light;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: _currentThemeMode,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('AidAble'),
@@ -141,6 +145,16 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: Colors.white,
                     child: Icon(Icons.person),
                   ),
+                ),
+                SwitchListTile(
+                  title: const Text('Dark Mode'),
+                  value: _currentThemeMode == ThemeMode.dark,
+                  onChanged: (value) {
+                    setState(() {
+                      _currentThemeMode =
+                          value ? ThemeMode.dark : ThemeMode.light;
+                    });
+                  },
                 ),
                 ListTile(
                   title: const Text("U S E R  N A M E "),
