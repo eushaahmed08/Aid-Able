@@ -1,12 +1,12 @@
 import 'package:aid_able/pages/addpost.dart';
 import 'package:aid_able/pages/news_feed_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../chat/users page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,10 +15,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final user = FirebaseAuth.instance.currentUser!;
+  ThemeMode _currentThemeMode = ThemeMode.light;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: _currentThemeMode,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('AidAble'),
@@ -38,21 +42,27 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   String itemName = '';
+                  String imagePath = '';
                   switch (index) {
                     case 0:
                       itemName = 'Food';
+                      imagePath = 'assets/food.jpg';
                       break;
                     case 1:
                       itemName = 'Clothes';
+                      imagePath = 'assets/clothes.jpeg';
                       break;
                     case 2:
                       itemName = 'Books';
+                      imagePath = 'assets/books.jpg';
                       break;
                     case 3:
                       itemName = 'Blankets';
+                      imagePath = 'assets/Blanket.png';
                       break;
                     case 4:
                       itemName = 'Toys';
+                      imagePath = 'assets/stationary.jpg';
                       break;
                     default:
                       itemName = 'Unknown';
@@ -60,17 +70,32 @@ class _HomePageState extends State<HomePage> {
 
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 56.6929,
-                      decoration: BoxDecoration(
-                        color: Colors.purple,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Text(
-                          itemName,
-                          style: const TextStyle(
-                              fontSize: 20.0, color: Colors.black),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: AssetImage(imagePath),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                itemName,
+                                style: const TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -144,6 +169,16 @@ class _HomePageState extends State<HomePage> {
                     child: Icon(Icons.person),
                   ),
                 ),
+                SwitchListTile(
+                  title: const Text('Dark Mode'),
+                  value: _currentThemeMode == ThemeMode.dark,
+                  onChanged: (value) {
+                    setState(() {
+                      _currentThemeMode =
+                          value ? ThemeMode.dark : ThemeMode.light;
+                    });
+                  },
+                ),
                 ListTile(
                   title: const Text("U S E R  N A M E "),
                   onTap: () {
@@ -172,8 +207,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              const NewsFeedPage(), // Create NewsFeedPage class
+          builder: (context) => const NewsFeedPage(),
         ),
       );
     } else if(index==2) {
